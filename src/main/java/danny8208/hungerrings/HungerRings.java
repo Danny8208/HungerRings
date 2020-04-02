@@ -1,5 +1,6 @@
 package danny8208.hungerrings;
 
+import danny8208.hungerrings.items.RingHunger;
 import danny8208.hungerrings.setup.ClientProxy;
 import danny8208.hungerrings.setup.IProxy;
 import danny8208.hungerrings.setup.ServerProxy;
@@ -18,6 +19,7 @@ import org.apache.logging.log4j.Logger;
 public class HungerRings
 {
     public static final String MODID = "hungerrings";
+    public static final CreativeGroup GROUP = new CreativeGroup();
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
     private static final Logger LOGGER = LogManager.getLogger();
 
@@ -35,6 +37,9 @@ public class HungerRings
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
+            event.getRegistry().registerAll(
+                    new RingHunger()
+            );
         }
     }
 }
