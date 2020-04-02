@@ -95,7 +95,6 @@ public class RingHunger extends Item {
                 HungerNBT.subtractHunger(stack, 1);
                 HungerNBT.subtractSaturation(stack, 1.0f);
             }
-            player.sendMessage(new TranslationTextComponent(Float.toString(player.getFoodStats().getSaturationLevel())));
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }

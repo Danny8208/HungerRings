@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SIW",
+    "IBI",
+    "WIS"
+  ],
+  "key": {
+    "B": {
+      "item": "hungerrings:iron_ring"
+    },
+    "W": {
+      "item": "minecraft:bread"
+    },
+    "S": {
+      "item": "minecraft:cooked_beef"
+    },
+    "I": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "hungerrings:hunger_ring"
+  }
+}

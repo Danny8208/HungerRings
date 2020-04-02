@@ -1,6 +1,7 @@
 package danny8208.hungerrings;
 
 import danny8208.hungerrings.items.RingHunger;
+import danny8208.hungerrings.items.RingIron;
 import danny8208.hungerrings.setup.ClientProxy;
 import danny8208.hungerrings.setup.IProxy;
 import danny8208.hungerrings.setup.ServerProxy;
@@ -38,7 +39,8 @@ public class HungerRings
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
             event.getRegistry().registerAll(
-                    new RingHunger()
+                    new RingHunger(),
+                    new RingIron()
             );
         }
     }
