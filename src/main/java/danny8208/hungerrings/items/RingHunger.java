@@ -98,4 +98,9 @@ public class RingHunger extends Item {
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
+
+    @Override
+    public boolean hasEffect(ItemStack stack) {
+        return EnabledUtil.isEnabled(stack);
+    }
 }

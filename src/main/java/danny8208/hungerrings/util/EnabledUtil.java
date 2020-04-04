@@ -5,7 +5,7 @@ import net.minecraft.nbt.CompoundNBT;
 
 public class EnabledUtil {
     public static boolean isEnabled(ItemStack stack) {
-        return stack.getTag().getBoolean("IsEnabled");
+        return stack.hasTag() && stack.getTag().getBoolean("IsEnabled");
     }
 
     public static void changeEnabled(ItemStack stack) {
