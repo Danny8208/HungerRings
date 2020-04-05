@@ -90,10 +90,14 @@ public class RingHunger extends Item {
         if (!worldIn.isRemote && entityIn instanceof PlayerEntity && EnabledUtil.isEnabled(stack)) {
             PlayerEntity player = (PlayerEntity)entityIn;
 
-            if (player.getFoodStats().getFoodLevel() < 20 && player.getFoodStats().getSaturationLevel() < 20 && HungerNBT.getHunger(stack) > 0 && HungerNBT.getSaturation(stack) > 0) {
-                player.getFoodStats().addStats(1, 1f);
+            if (player.getFoodStats().getFoodLevel() < 20 && HungerNBT.getHunger(stack) > 0) {
+                player.getFoodStats().addStats(1, 0);
                 HungerNBT.subtractHunger(stack, 1);
-                HungerNBT.subtractSaturation(stack, 1.0f);
+            }
+
+            if (player.getFoodStats().getFoodLevel() < 20  && HungerNBT.getSaturation(stack) > 0) {
+                player.getFoodStats().addStats(1, 1f);
+                HungerNBT.subtractSaturation(stack, 0.1f);
             }
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
