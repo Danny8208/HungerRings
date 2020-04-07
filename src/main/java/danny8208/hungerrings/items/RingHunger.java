@@ -95,8 +95,8 @@ public class RingHunger extends Item {
                 HungerNBT.subtractHunger(stack, 1);
             }
 
-            if (player.getFoodStats().getFoodLevel() < 20  && HungerNBT.getSaturation(stack) > 0) {
-                player.getFoodStats().addStats(1, 1f);
+            if (player.getFoodStats().getSaturationLevel() < 5  && HungerNBT.getSaturation(stack) > 0) {
+                player.getFoodStats().setFoodSaturationLevel(player.getFoodStats().getSaturationLevel() + 1);
                 HungerNBT.subtractSaturation(stack, 0.1f);
             }
         }

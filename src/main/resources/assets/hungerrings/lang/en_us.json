@@ -6,5 +6,6 @@
   "item.hungerrings.food_slot": "The ring takes food out of the most top left player inventory slot.",
   "item.hungerrings.enabled": "The hunger ring has been enabled",
   "item.hungerrings.disabled": "The hunger ring has been disabled",
-  "item.hungerrings.no_food": "You don't have food in your first inventory slot"
+  "item.hungerrings.no_food": "You don't have food in your first inventory slot",
+  "item.hungerrings.crafting": "A crafting material"
 }
