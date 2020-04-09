@@ -1,12 +1,18 @@
 package danny8208.hungerrings;
 
+import danny8208.hungerrings.blocks.InfusionTable;
+import danny8208.hungerrings.blocks.InfusionTableTile;
+import danny8208.hungerrings.blocks.ModBlocks;
 import danny8208.hungerrings.items.RingHunger;
 import danny8208.hungerrings.items.RingIron;
 import danny8208.hungerrings.setup.ClientProxy;
 import danny8208.hungerrings.setup.IProxy;
 import danny8208.hungerrings.setup.ServerProxy;
 import danny8208.hungerrings.util.SupportingMods;
+import net.minecraft.block.Block;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -55,9 +61,26 @@ public class HungerRings
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
             event.getRegistry().registerAll(
                     new RingHunger(),
-                    new RingIron()
+                    new RingIron(),
+
+                    new BlockItem(ModBlocks.INFUSION_TABLE, new Item.Properties().group(GROUP)).setRegistryName("infusion_table")
             );
             logger.info("All HungerRings items has been registered");
+        }
+
+        @SubscribeEvent
+        public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
+            event.getRegistry().registerAll(
+                    new InfusionTable()
+            );
+            logger.info("All HungerRings blocks has been registered");
+        }
+
+        @SubscribeEvent
+        public static void onTileRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
+            event.getRegistry().registerAll(
+                    TileEntityType.Builder.create(InfusionTableTile::new, ModBlocks.INFUSION_TABLE).build(null).setRegistryName("infusion_table")
+            );
         }
     }
 }
