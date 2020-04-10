@@ -1,6 +1,7 @@
 package danny8208.hungerrings;
 
 import danny8208.hungerrings.blocks.InfusionTable;
+import danny8208.hungerrings.blocks.InfusionTableRenderer;
 import danny8208.hungerrings.blocks.InfusionTableTile;
 import danny8208.hungerrings.blocks.ModBlocks;
 import danny8208.hungerrings.items.RingHunger;
@@ -10,15 +11,20 @@ import danny8208.hungerrings.setup.IProxy;
 import danny8208.hungerrings.setup.ServerProxy;
 import danny8208.hungerrings.util.SupportingMods;
 import net.minecraft.block.Block;
+import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.InterModComms;
+import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.InterModEnqueueEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
@@ -38,6 +44,7 @@ public class HungerRings
     public HungerRings() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::enqueueIMC);
+        FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -45,6 +52,10 @@ public class HungerRings
     private void setup(final FMLCommonSetupEvent event) {
         proxy.init();
         logger.info("HungerRings common setup");
+    }
+
+    private void clientSetup(final FMLClientSetupEvent event) {
+        ClientRegistry.bindTileEntityRenderer(ModBlocks.INFUSION_TABLE_TILE, InfusionTableRenderer::new);
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
@@ -81,6 +92,15 @@ public class HungerRings
             event.getRegistry().registerAll(
                     TileEntityType.Builder.create(InfusionTableTile::new, ModBlocks.INFUSION_TABLE).build(null).setRegistryName("infusion_table")
             );
+        }
+
+        @SubscribeEvent
+        public static void onTextureStitch(TextureStitchEvent.Pre event) {
+            if (!event.getMap().getTextureLocation().equals(AtlasTexture.LOCATION_BLOCKS_TEXTURE)) {
+                return;
+            }
+
+            event.addSprite(new ResourceLocation(MODID, "block/infusion_table"));
         }
     }
 }

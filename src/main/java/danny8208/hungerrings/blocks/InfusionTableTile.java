@@ -42,7 +42,7 @@ public class InfusionTableTile extends TileEntity implements ITickableTileEntity
         return super.write(tag);
     }
 
-    private ItemStackHandler createHandler() {
+    protected ItemStackHandler createHandler() {
         return new ItemStackHandler(1) {
             @Override
             protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
