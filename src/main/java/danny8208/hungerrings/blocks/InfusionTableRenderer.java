@@ -16,8 +16,8 @@ public class InfusionTableRenderer extends TileEntityRenderer<InfusionTableTile>
     }
 
     @Override
-    public void render(InfusionTableTile tileEntityIn, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int i, int i1) {
-        ItemStack stack = tileEntityIn.createHandler().getStackInSlot(0);
+    public void render(InfusionTableTile table, float partialTicks, MatrixStack matrix, IRenderTypeBuffer buffer, int i, int i1) {
+        ItemStack stack = table.inventory.getStackInSlot(0);
         if (!stack.isEmpty()) {
             matrix.push();
             matrix.translate(0.5D, 1.2D, 0.5D);
@@ -26,6 +26,7 @@ public class InfusionTableRenderer extends TileEntityRenderer<InfusionTableTile>
             double tick = System.currentTimeMillis() / 800.0D;
             matrix.translate(0.0D, Math.sin(tick % (2 * Math.PI)) * 0.065D, 0.0D);
             matrix.rotate(Vector3f.YP.rotationDegrees((float) ((tick * 40.0D) % 360)));
+
             Minecraft.getInstance().getItemRenderer().renderItem(stack, ItemCameraTransforms.TransformType.GROUND, i, i1, matrix, buffer);
             matrix.pop();
         }

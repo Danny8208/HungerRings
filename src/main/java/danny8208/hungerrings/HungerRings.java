@@ -11,12 +11,9 @@ import danny8208.hungerrings.setup.IProxy;
 import danny8208.hungerrings.setup.ServerProxy;
 import danny8208.hungerrings.util.SupportingMods;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.texture.AtlasTexture;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -39,7 +36,7 @@ public class HungerRings
     public static final String MODID = "hungerrings";
     public static final CreativeGroup GROUP = new CreativeGroup();
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
-    private static final Logger logger = LogManager.getLogger();
+    public static final Logger logger = LogManager.getLogger();
 
     public HungerRings() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
@@ -92,15 +89,6 @@ public class HungerRings
             event.getRegistry().registerAll(
                     TileEntityType.Builder.create(InfusionTableTile::new, ModBlocks.INFUSION_TABLE).build(null).setRegistryName("infusion_table")
             );
-        }
-
-        @SubscribeEvent
-        public static void onTextureStitch(TextureStitchEvent.Pre event) {
-            if (!event.getMap().getTextureLocation().equals(AtlasTexture.LOCATION_BLOCKS_TEXTURE)) {
-                return;
-            }
-
-            event.addSprite(new ResourceLocation(MODID, "block/infusion_table"));
         }
     }
 }
