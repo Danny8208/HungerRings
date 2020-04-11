@@ -15,7 +15,7 @@ import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 public class InfusionTableTile extends TileEntity implements ITickableTileEntity {
-        public ItemStackHandler inventory = new ItemStackHandler(1) {
+    public ItemStackHandler inventory = new ItemStackHandler(1) {
             @Override
             protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
                 return 1;
