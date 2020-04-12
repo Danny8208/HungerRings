@@ -1,9 +1,9 @@
 {   "parent": "block/block",
     "textures": {
         "particle": "hungerrings:block/bb",
-        "bottom": "hungerrings:block/bbb",
-        "top": "hungerrings:block/bbbb",
-        "side": "hungerrings:block/bbbbb"
+        "bottom": "hungerrings:block/bb",
+        "top": "hungerrings:block/bb",
+        "side": "hungerrings:block/bb"
     },
     "elements": [
         {   "from": [ 0, 0, 0 ],

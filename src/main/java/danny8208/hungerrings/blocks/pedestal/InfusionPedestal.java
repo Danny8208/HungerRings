@@ -1,4 +1,4 @@
-package danny8208.hungerrings.blocks;
+package danny8208.hungerrings.blocks.pedestal;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -23,16 +23,16 @@ import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nullable;
 
-public class InfusionTable extends Block {
-    private static VoxelShape shape = Block.makeCuboidShape(0,0,0, 16, 12, 16);
+public class InfusionPedestal  extends Block {
+    private static VoxelShape shape = Block.makeCuboidShape(4,0,4, 12, 16, 12);
 
-    public InfusionTable() {
+    public InfusionPedestal() {
         super(Properties.create(Material.ROCK)
                 .hardnessAndResistance(5, 1200.0f)
                 .sound(SoundType.STONE)
                 .harvestTool(ToolType.PICKAXE)
         );
-        setRegistryName("infusion_table");
+        setRegistryName("infusion_pedestal");
     }
 
     @Override
@@ -48,15 +48,15 @@ public class InfusionTable extends Block {
     @Nullable
     @Override
     public TileEntity createTileEntity(BlockState state, IBlockReader world) {
-        return new InfusionTableTile();
+        return new InfusionPedestalTile();
     }
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
         TileEntity tile = worldIn.getTileEntity(pos);
-        if (tile instanceof InfusionTableTile) {
-            InfusionTableTile table = (InfusionTableTile) tile;
-            ItemStackHandler inventory = table.inventory;
+        if (tile instanceof InfusionPedestalTile) {
+            InfusionPedestalTile pedestal = (InfusionPedestalTile) tile;
+            ItemStackHandler inventory = pedestal.inventory;
             ItemStack input = inventory.getStackInSlot(0);
             ItemStack held = player.getHeldItem(handIn);
 

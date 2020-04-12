@@ -1,9 +1,12 @@
 package danny8208.hungerrings;
 
-import danny8208.hungerrings.blocks.InfusionTable;
-import danny8208.hungerrings.blocks.InfusionTableRenderer;
-import danny8208.hungerrings.blocks.InfusionTableTile;
 import danny8208.hungerrings.blocks.ModBlocks;
+import danny8208.hungerrings.blocks.pedestal.InfusionPedestal;
+import danny8208.hungerrings.blocks.pedestal.InfusionPedestalRenderer;
+import danny8208.hungerrings.blocks.pedestal.InfusionPedestalTile;
+import danny8208.hungerrings.blocks.table.InfusionTable;
+import danny8208.hungerrings.blocks.table.InfusionTableRenderer;
+import danny8208.hungerrings.blocks.table.InfusionTableTile;
 import danny8208.hungerrings.items.RingHunger;
 import danny8208.hungerrings.items.RingIron;
 import danny8208.hungerrings.setup.ClientProxy;
@@ -53,6 +56,8 @@ public class HungerRings
 
     private void clientSetup(final FMLClientSetupEvent event) {
         ClientRegistry.bindTileEntityRenderer(ModBlocks.INFUSION_TABLE_TILE, InfusionTableRenderer::new);
+        ClientRegistry.bindTileEntityRenderer(ModBlocks.INFUSION_PEDESTAL_TILE, InfusionPedestalRenderer::new);
+        logger.info("HungerRings client setup");
     }
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
@@ -71,7 +76,8 @@ public class HungerRings
                     new RingHunger(),
                     new RingIron(),
 
-                    new BlockItem(ModBlocks.INFUSION_TABLE, new Item.Properties().group(GROUP)).setRegistryName("infusion_table")
+                    new BlockItem(ModBlocks.INFUSION_TABLE, new Item.Properties().group(GROUP)).setRegistryName("infusion_table"),
+                    new BlockItem(ModBlocks.INFUSION_PEDESTAL, new Item.Properties().group(GROUP)).setRegistryName("infusion_pedestal")
             );
             logger.info("All HungerRings items has been registered");
         }
@@ -79,7 +85,8 @@ public class HungerRings
         @SubscribeEvent
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
             event.getRegistry().registerAll(
-                    new InfusionTable()
+                    new InfusionTable(),
+                    new InfusionPedestal()
             );
             logger.info("All HungerRings blocks has been registered");
         }
@@ -87,7 +94,8 @@ public class HungerRings
         @SubscribeEvent
         public static void onTileRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
             event.getRegistry().registerAll(
-                    TileEntityType.Builder.create(InfusionTableTile::new, ModBlocks.INFUSION_TABLE).build(null).setRegistryName("infusion_table")
+                    TileEntityType.Builder.create(InfusionTableTile::new, ModBlocks.INFUSION_TABLE).build(null).setRegistryName("infusion_table"),
+                    TileEntityType.Builder.create(InfusionPedestalTile::new, ModBlocks.INFUSION_PEDESTAL).build(null).setRegistryName("infusion_pedestal")
             );
         }
     }

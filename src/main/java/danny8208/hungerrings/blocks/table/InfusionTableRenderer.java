@@ -1,4 +1,4 @@
-package danny8208.hungerrings.blocks;
+package danny8208.hungerrings.blocks.table;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
 import net.minecraft.client.Minecraft;

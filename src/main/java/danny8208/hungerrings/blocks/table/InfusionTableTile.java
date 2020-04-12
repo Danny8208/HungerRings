@@ -1,5 +1,6 @@
-package danny8208.hungerrings.blocks;
+package danny8208.hungerrings.blocks.table;
 
+import danny8208.hungerrings.blocks.ModBlocks;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
