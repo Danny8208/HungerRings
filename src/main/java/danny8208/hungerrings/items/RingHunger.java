@@ -62,7 +62,7 @@ public class RingHunger extends Item {
         PlayerInventory playerInventory = playerIn.inventory;
 
         if (!worldIn.isRemote) {
-            if(!playerIn.isCrouching()) {
+            if (!playerIn.isCrouching()) {
                 EnabledUtil.changeEnabled(stack);
                 if (EnabledUtil.isEnabled(stack)) {
                     playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.enabled"));
@@ -88,14 +88,14 @@ public class RingHunger extends Item {
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
         if (!worldIn.isRemote && entityIn instanceof PlayerEntity && EnabledUtil.isEnabled(stack)) {
-            PlayerEntity player = (PlayerEntity)entityIn;
+            PlayerEntity player = (PlayerEntity) entityIn;
 
             if (player.getFoodStats().getFoodLevel() < 20 && HungerNBT.getHunger(stack) > 0) {
                 player.getFoodStats().addStats(1, 0);
                 HungerNBT.subtractHunger(stack, 1);
             }
 
-            if (player.getFoodStats().getSaturationLevel() < 5  && HungerNBT.getSaturation(stack) > 0) {
+            if (player.getFoodStats().getSaturationLevel() < 5 && HungerNBT.getSaturation(stack) > 0) {
                 player.getFoodStats().setFoodSaturationLevel(player.getFoodStats().getSaturationLevel() + 1);
                 HungerNBT.subtractSaturation(stack, 0.1f);
             }

@@ -17,16 +17,16 @@ import javax.annotation.Nullable;
 
 public class InfusionTableTile extends TileEntity implements ITickableTileEntity {
     public ItemStackHandler inventory = new ItemStackHandler(1) {
-            @Override
-            protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
-                return 1;
-            }
+        @Override
+        protected int getStackLimit(int slot, @Nonnull ItemStack stack) {
+            return 1;
+        }
 
-            @Override
-            protected void onContentsChanged(int slot) {
-                markDirty();
-            }
-        };
+        @Override
+        protected void onContentsChanged(int slot) {
+            markDirty();
+        }
+    };
     private final LazyOptional<IItemHandler> handler = LazyOptional.of(() -> inventory);
 
     public InfusionTableTile() {

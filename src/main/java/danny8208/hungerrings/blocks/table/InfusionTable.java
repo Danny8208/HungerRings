@@ -24,7 +24,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nullable;
 
 public class InfusionTable extends Block {
-    private static VoxelShape shape = Block.makeCuboidShape(0,0,0, 16, 12, 16);
+    private static VoxelShape shape = Block.makeCuboidShape(0, 0, 0, 16, 12, 16);
 
     public InfusionTable() {
         super(Properties.create(Material.ROCK)

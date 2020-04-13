@@ -34,8 +34,7 @@ import top.theillusivec4.curios.api.CuriosAPI;
 import top.theillusivec4.curios.api.imc.CurioIMCMessage;
 
 @Mod("hungerrings")
-public class HungerRings
-{
+public class HungerRings {
     public static final String MODID = "hungerrings";
     public static final CreativeGroup GROUP = new CreativeGroup();
     public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
@@ -68,7 +67,7 @@ public class HungerRings
         logger.info("HungerRings IMC setup");
     }
 
-    @Mod.EventBusSubscriber(bus=Mod.EventBusSubscriber.Bus.MOD)
+    @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
     public static class RegistryEvents {
         @SubscribeEvent
         public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
