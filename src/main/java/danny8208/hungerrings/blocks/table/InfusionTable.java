@@ -81,4 +81,13 @@ public class InfusionTable extends Block {
         }
         return ActionResultType.SUCCESS;
     }
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBlockHarvested(worldIn, pos, state, player);
+        if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof InfusionTableTile) {
+            InfusionTableTile tile = (InfusionTableTile) worldIn.getTileEntity(pos);
+            worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), tile.inventory.getStackInSlot(0)));
+        }
+    }
 }

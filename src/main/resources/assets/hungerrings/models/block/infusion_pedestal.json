@@ -1,9 +1,9 @@
 {   "parent": "block/block",
 	"textures": {
-		"particle": "hungerrings:block/bb",
-		"bottom": "hungerrings:block/bb",
-		"top": "hungerrings:block/bb",
-		"side": "hungerrings:block/bb"
+		"particle": "hungerrings:block/infusion_pedestal_side",
+		"bottom": "hungerrings:block/infusion_pedestal_bottom",
+		"top": "hungerrings:block/infusion_pedestal_top",
+		"side": "hungerrings:block/infusion_pedestal_side"
 	},
 	"elements": [
 		{   "from": [ 4, 0, 4 ],

@@ -81,4 +81,13 @@ public class InfusionPedestal  extends Block {
         }
         return ActionResultType.SUCCESS;
     }
+
+    @Override
+    public void onBlockHarvested(World worldIn, BlockPos pos, BlockState state, PlayerEntity player) {
+        super.onBlockHarvested(worldIn, pos, state, player);
+        if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof InfusionPedestalTile) {
+            InfusionPedestalTile tile = (InfusionPedestalTile) worldIn.getTileEntity(pos);
+            worldIn.addEntity(new ItemEntity(worldIn, pos.getX(), pos.getY(), pos.getZ(), tile.inventory.getStackInSlot(0)));
+        }
+    }
 }
