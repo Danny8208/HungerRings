@@ -28,7 +28,7 @@ public class InfusionTable extends Block {
 
     public InfusionTable() {
         super(Properties.create(Material.ROCK)
-                .hardnessAndResistance(5, 1200.0f)
+                .hardnessAndResistance(3, 1200.0f)
                 .sound(SoundType.STONE)
                 .harvestTool(ToolType.PICKAXE)
         );
@@ -61,6 +61,22 @@ public class InfusionTable extends Block {
             ItemStack held = player.getHeldItem(handIn);
 
             if (input.isEmpty() && !held.isEmpty()) {
+                ItemStack stack1 = held.copy();
+                stack1.setCount(1);
+                inventory.setStackInSlot(0, stack1);
+                if (held.getCount() >= 1) {
+                    held.shrink(1);
+                    player.setHeldItem(handIn, held);
+                } else {
+                    player.setHeldItem(handIn, ItemStack.EMPTY);
+                }
+                worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
+            }
+            if (!input.isEmpty() && !held.isEmpty()) {
+                BlockPos playerPos = player.getPosition();
+                ItemEntity item = new ItemEntity(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), input);
+                item.setNoPickupDelay();
+                worldIn.addEntity(item);
                 ItemStack stack1 = held.copy();
                 stack1.setCount(1);
                 inventory.setStackInSlot(0, stack1);

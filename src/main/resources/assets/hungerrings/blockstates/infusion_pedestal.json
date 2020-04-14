@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "hungerrings:block/infusion_pedestal" }
+    "": {
+      "model": "hungerrings:block/infusion_pedestal"
+    }
   }
 }

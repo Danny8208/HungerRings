@@ -37,8 +37,8 @@ import top.theillusivec4.curios.api.imc.CurioIMCMessage;
 public class HungerRings {
     public static final String MODID = "hungerrings";
     public static final CreativeGroup GROUP = new CreativeGroup();
-    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
     public static final Logger logger = LogManager.getLogger();
+    public static IProxy proxy = DistExecutor.runForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public HungerRings() {
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);

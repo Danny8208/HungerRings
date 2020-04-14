@@ -1,21 +1,79 @@
-{   "parent": "block/block",
-	"textures": {
-		"particle": "hungerrings:block/infusion_pedestal_side",
-		"bottom": "hungerrings:block/infusion_pedestal_bottom",
-		"top": "hungerrings:block/infusion_pedestal_top",
-		"side": "hungerrings:block/infusion_pedestal_side"
-	},
-	"elements": [
-		{   "from": [ 4, 0, 4 ],
-			"to": [ 12, 16, 12 ],
-			"faces": {
-				"north": {"uv": [0, 0, 8, 12], "texture": "#bb"},
-				"east": {"uv": [0, 0, 8, 12], "texture": "#bb"},
-				"south": {"uv": [0, 0, 8, 12], "texture": "#bb"},
-				"west": {"uv": [0, 0, 8, 12], "texture": "#bb"},
-				"up": {"uv": [0, 0, 8, 8], "texture": "#bb"},
-				"down": {"uv": [0, 0, 8, 8], "texture": "#bb"}
-			}
-		}
-	]
+{
+  "parent": "block/block",
+  "textures": {
+    "particle": "hungerrings:block/infusion_pedestal_side",
+    "bottom": "hungerrings:block/infusion_pedestal_bottom",
+    "top": "hungerrings:block/infusion_pedestal_top",
+    "side": "hungerrings:block/infusion_pedestal_side"
+  },
+  "elements": [
+    {
+      "from": [
+        4,
+        0,
+        4
+      ],
+      "to": [
+        12,
+        16,
+        12
+      ],
+      "faces": {
+        "north": {
+          "uv": [
+            0,
+            0,
+            8,
+            12
+          ],
+          "texture": "#bb"
+        },
+        "east": {
+          "uv": [
+            0,
+            0,
+            8,
+            12
+          ],
+          "texture": "#bb"
+        },
+        "south": {
+          "uv": [
+            0,
+            0,
+            8,
+            12
+          ],
+          "texture": "#bb"
+        },
+        "west": {
+          "uv": [
+            0,
+            0,
+            8,
+            12
+          ],
+          "texture": "#bb"
+        },
+        "up": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#bb"
+        },
+        "down": {
+          "uv": [
+            0,
+            0,
+            8,
+            8
+          ],
+          "texture": "#bb"
+        }
+      }
+    }
+  ]
 }
