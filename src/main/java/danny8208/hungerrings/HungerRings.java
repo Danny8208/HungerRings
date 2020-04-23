@@ -9,6 +9,7 @@ import danny8208.hungerrings.blocks.table.InfusionTableRenderer;
 import danny8208.hungerrings.blocks.table.InfusionTableTile;
 import danny8208.hungerrings.items.RingHunger;
 import danny8208.hungerrings.items.RingIron;
+import danny8208.hungerrings.items.RingPoison;
 import danny8208.hungerrings.setup.ClientProxy;
 import danny8208.hungerrings.setup.IProxy;
 import danny8208.hungerrings.setup.ServerProxy;
@@ -50,6 +51,7 @@ public class HungerRings {
 
     private void setup(final FMLCommonSetupEvent event) {
         proxy.init();
+        ModKeybinding.init();
         logger.info("HungerRings common setup");
     }
 
@@ -61,7 +63,7 @@ public class HungerRings {
 
     private void enqueueIMC(final InterModEnqueueEvent event) {
         if (SupportingMods.CURIOS.isLoaded()) {
-            InterModComms.sendTo("curios", CuriosAPI.IMC.REGISTER_TYPE, () -> new CurioIMCMessage("ring").setSize(1));
+            InterModComms.sendTo("curios", CuriosAPI.IMC.REGISTER_TYPE, () -> new CurioIMCMessage("ring").setSize(3));
             logger.info("CuriosAPI has been detected. Registering rings to be able to be worn.");
         }
         logger.info("HungerRings IMC setup");
@@ -74,6 +76,7 @@ public class HungerRings {
             event.getRegistry().registerAll(
                     new RingHunger(),
                     new RingIron(),
+                    new RingPoison(),
 
                     new BlockItem(ModBlocks.INFUSION_TABLE, new Item.Properties().group(GROUP)).setRegistryName("infusion_table"),
                     new BlockItem(ModBlocks.INFUSION_PEDESTAL, new Item.Properties().group(GROUP)).setRegistryName("infusion_pedestal")

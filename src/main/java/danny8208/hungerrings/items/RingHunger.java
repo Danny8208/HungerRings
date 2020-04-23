@@ -12,7 +12,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
@@ -31,28 +31,8 @@ public class RingHunger extends Item {
         HungerNBT.addSaturationTag(stack);
         tooltip.add(new TranslationTextComponent("item.hungerrings.activate"));
         tooltip.add(new TranslationTextComponent("item.hungerrings.food_slot"));
-        tooltip.add(new TextComponent() {
-            @Override
-            public String getUnformattedComponentText() {
-                return "Stored Hunger: " + HungerNBT.getHunger(stack);
-            }
-
-            @Override
-            public ITextComponent shallowCopy() {
-                return null;
-            }
-        });
-        tooltip.add(new TextComponent() {
-            @Override
-            public String getUnformattedComponentText() {
-                return "Stored Saturation: " + HungerNBT.getSaturation(stack);
-            }
-
-            @Override
-            public ITextComponent shallowCopy() {
-                return null;
-            }
-        });
+        tooltip.add(new StringTextComponent("Stored Hunger: " + HungerNBT.getHunger(stack)));
+        tooltip.add(new StringTextComponent("Stored Saturation: " + HungerNBT.getSaturation(stack)));
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
@@ -65,10 +45,10 @@ public class RingHunger extends Item {
             if (!playerIn.isCrouching()) {
                 EnabledUtil.changeEnabled(stack);
                 if (EnabledUtil.isEnabled(stack)) {
-                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.enabled"));
+                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.enabled1"));
                 }
                 if (!EnabledUtil.isEnabled(stack)) {
-                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.disabled"));
+                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.disabled1"));
                 }
             }
             if (playerIn.isCrouching()) {

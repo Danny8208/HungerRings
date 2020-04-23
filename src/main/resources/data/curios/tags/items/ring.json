@@ -1,6 +1,7 @@
 {
   "replace": false,
   "values": [
-    "hungerrings:hunger_ring"
+    "hungerrings:hunger_ring",
+    "hungerrings:poison_ring"
   ]
 }

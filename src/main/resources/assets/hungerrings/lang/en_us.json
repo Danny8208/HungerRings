@@ -2,10 +2,15 @@
   "itemGroup.hungerrings": "HungerRings",
   "item.hungerrings.hunger_ring": "Hunger Ring",
   "item.hungerrings.iron_ring": "Iron Ring",
+  "item.hungerrings.poison_ring": "Poison Ring",
   "item.hungerrings.activate": "Right click to activate, shift right click to take food and store it in ring",
   "item.hungerrings.food_slot": "The ring takes food out of the most top left player inventory slot.",
-  "item.hungerrings.enabled": "The hunger ring has been enabled",
-  "item.hungerrings.disabled": "The hunger ring has been disabled",
+  "item.hungerrings.enabled1": "The hunger ring has been enabled",
+  "item.hungerrings.disabled1": "The hunger ring has been disabled",
+  "item.hungerrings.enabled2": "The poison ring has been enabled",
+  "item.hungerrings.disabled2": "The poison ring has been disabled",
   "item.hungerrings.no_food": "You don't have food in your first inventory slot",
-  "item.hungerrings.crafting": "A crafting material"
+  "item.hungerrings.crafting": "A crafting material",
+  "key.hungerrings.toggle_poison": "Poison Ring Toggle",
+  "key.categories.hungerrings": "HungerRings"
 }

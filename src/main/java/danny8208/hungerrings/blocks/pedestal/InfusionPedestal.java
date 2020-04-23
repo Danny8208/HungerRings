@@ -24,7 +24,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import javax.annotation.Nullable;
 
 public class InfusionPedestal extends Block {
-    private static VoxelShape shape = Block.makeCuboidShape(4, 0, 4, 12, 16, 12);
+    private static final VoxelShape shape = Block.makeCuboidShape(4, 0, 4, 12, 16, 12);
 
     public InfusionPedestal() {
         super(Properties.create(Material.ROCK)

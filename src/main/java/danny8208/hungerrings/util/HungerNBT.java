@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 
 public class HungerNBT {
+    //hunger nbt
     public static void addHunger(ItemStack stack, int hunger) {
         stack.getTag().putInt("StoredHunger", getHunger(stack) + hunger);
     }
@@ -22,6 +23,7 @@ public class HungerNBT {
         return stack.getTag().getInt("StoredHunger");
     }
 
+    //saturation nbt
     public static void addSaturation(ItemStack stack, float saturation) {
         stack.getTag().putFloat("StoredSaturation", getSaturation(stack) + saturation);
     }
@@ -38,5 +40,24 @@ public class HungerNBT {
 
     public static float getSaturation(ItemStack stack) {
         return stack.getTag().getFloat("StoredSaturation");
+    }
+
+    //milk nbt
+    public static void addMilk(ItemStack stack, float milk) {
+        stack.getTag().putFloat("StoredMilk", getMilk(stack) + milk);
+    }
+
+    public static void subtractMilk(ItemStack stack, float milk) {
+        stack.getTag().putFloat("StoredMilk", getMilk(stack) - milk);
+    }
+
+    public static void addMilkTag(ItemStack stack) {
+        if (!stack.hasTag()) {
+            stack.setTag(new CompoundNBT());
+        }
+    }
+
+    public static float getMilk(ItemStack stack) {
+        return stack.getTag().getFloat("StoredMilk");
     }
 }
