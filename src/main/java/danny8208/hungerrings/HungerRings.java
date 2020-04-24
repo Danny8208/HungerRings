@@ -4,6 +4,8 @@ import danny8208.hungerrings.blocks.ModBlocks;
 import danny8208.hungerrings.blocks.pedestal.InfusionPedestal;
 import danny8208.hungerrings.blocks.pedestal.InfusionPedestalRenderer;
 import danny8208.hungerrings.blocks.pedestal.InfusionPedestalTile;
+import danny8208.hungerrings.blocks.processor.HungerProcessor;
+import danny8208.hungerrings.blocks.processor.HungerProcessorTile;
 import danny8208.hungerrings.blocks.table.InfusionTable;
 import danny8208.hungerrings.blocks.table.InfusionTableRenderer;
 import danny8208.hungerrings.blocks.table.InfusionTableTile;
@@ -79,7 +81,8 @@ public class HungerRings {
                     new RingPoison(),
 
                     new BlockItem(ModBlocks.INFUSION_TABLE, new Item.Properties().group(GROUP)).setRegistryName("infusion_table"),
-                    new BlockItem(ModBlocks.INFUSION_PEDESTAL, new Item.Properties().group(GROUP)).setRegistryName("infusion_pedestal")
+                    new BlockItem(ModBlocks.INFUSION_PEDESTAL, new Item.Properties().group(GROUP)).setRegistryName("infusion_pedestal"),
+                    new BlockItem(ModBlocks.HUNGER_PROCESSOR, new Item.Properties().group(GROUP)).setRegistryName("hunger_processor")
             );
             logger.info("All HungerRings items has been registered");
         }
@@ -88,7 +91,8 @@ public class HungerRings {
         public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
             event.getRegistry().registerAll(
                     new InfusionTable(),
-                    new InfusionPedestal()
+                    new InfusionPedestal(),
+                    new HungerProcessor()
             );
             logger.info("All HungerRings blocks has been registered");
         }
@@ -97,7 +101,8 @@ public class HungerRings {
         public static void onTileRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
             event.getRegistry().registerAll(
                     TileEntityType.Builder.create(InfusionTableTile::new, ModBlocks.INFUSION_TABLE).build(null).setRegistryName("infusion_table"),
-                    TileEntityType.Builder.create(InfusionPedestalTile::new, ModBlocks.INFUSION_PEDESTAL).build(null).setRegistryName("infusion_pedestal")
+                    TileEntityType.Builder.create(InfusionPedestalTile::new, ModBlocks.INFUSION_PEDESTAL).build(null).setRegistryName("infusion_pedestal"),
+                    TileEntityType.Builder.create(HungerProcessorTile::new, ModBlocks.HUNGER_PROCESSOR).build(null).setRegistryName("hunger_processor")
             );
         }
     }

@@ -31,6 +31,8 @@ public class RingPoison extends Item {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
+        tooltip.add(new TranslationTextComponent("item.hungerrings.activate2"));
+        tooltip.add(new TranslationTextComponent("item.hungerrings.milk_slot"));
         HungerNBT.addHungerTag(stack);
         tooltip.add(new StringTextComponent("Stored Milk: " + HungerNBT.getMilk(stack)));
         super.addInformation(stack, worldIn, tooltip, flagIn);

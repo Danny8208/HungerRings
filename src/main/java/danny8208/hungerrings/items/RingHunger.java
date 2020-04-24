@@ -29,7 +29,7 @@ public class RingHunger extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         HungerNBT.addHungerTag(stack);
         HungerNBT.addSaturationTag(stack);
-        tooltip.add(new TranslationTextComponent("item.hungerrings.activate"));
+        tooltip.add(new TranslationTextComponent("item.hungerrings.activate1"));
         tooltip.add(new TranslationTextComponent("item.hungerrings.food_slot"));
         tooltip.add(new StringTextComponent("Stored Hunger: " + HungerNBT.getHunger(stack)));
         tooltip.add(new StringTextComponent("Stored Saturation: " + HungerNBT.getSaturation(stack)));
