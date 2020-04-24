@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "hungerrings:block/hunger_processor"
+    }
+  }
+}
