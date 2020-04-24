@@ -46,8 +46,7 @@ public class RingHunger extends Item {
                 EnabledUtil.changeEnabled(stack);
                 if (EnabledUtil.isEnabled(stack)) {
                     playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.enabled1"));
-                }
-                if (!EnabledUtil.isEnabled(stack)) {
+                } else {
                     playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.disabled1"));
                 }
             }

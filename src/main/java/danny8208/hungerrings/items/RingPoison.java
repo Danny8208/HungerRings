@@ -38,9 +38,10 @@ public class RingPoison extends Item {
 
     @Override
     public ActionResult<ItemStack> onItemRightClick(World worldIn, PlayerEntity playerIn, Hand handIn) {
+        ItemStack stack = playerIn.getHeldItem(handIn);
+        PlayerInventory playerInventory = playerIn.inventory;
+
         if (!worldIn.isRemote) {
-            ItemStack stack = playerIn.getHeldItem(handIn);
-            PlayerInventory playerInventory = playerIn.inventory;
             if (!playerIn.isCrouching()) {
                 EnabledUtil.changeEnabled(stack);
                 if (EnabledUtil.isEnabled(stack)) {
@@ -49,12 +50,16 @@ public class RingPoison extends Item {
                     playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.disabled2"));
                 }
             }
-            if (playerIn.isCrouching() && playerInventory.getStackInSlot(9).getItem() == Items.MILK_BUCKET) {
-                playerInventory.decrStackSize(9, 1);
-                ItemEntity bucket = new ItemEntity(worldIn, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), new ItemStack(Items.BUCKET));
-                bucket.setNoPickupDelay();
-                worldIn.addEntity(bucket);
-                HungerNBT.addMilk(stack, 0.1f);
+            if (playerIn.isCrouching()) {
+                if (playerInventory.getStackInSlot(9).getItem() == Items.MILK_BUCKET) {
+                    playerInventory.decrStackSize(9, 1);
+                    ItemEntity bucket = new ItemEntity(worldIn, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), new ItemStack(Items.BUCKET));
+                    bucket.setNoPickupDelay();
+                    worldIn.addEntity(bucket);
+                    HungerNBT.addMilk(stack, 0.1f);
+                } else {
+                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.no_milk"));
+                }
             }
         }
         return super.onItemRightClick(worldIn, playerIn, handIn);
@@ -62,11 +67,11 @@ public class RingPoison extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (!worldIn.isRemote && entityIn instanceof PlayerEntity) {
+        if (!worldIn.isRemote && entityIn instanceof PlayerEntity && EnabledUtil.isEnabled(stack) && ModKeybinding.TOGGLE_POISON.isPressed() && HungerNBT.getMilk(stack) > 0) {
             PlayerEntity player = (PlayerEntity) entityIn;
-            if (ModKeybinding.TOGGLE_POISON.isPressed()) {
-            }
+            player.curePotionEffects(new ItemStack(Items.MILK_BUCKET));
+            HungerNBT.subtractMilk(stack, 0.1f);
+            super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
         }
-        super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);
     }
 }
