@@ -19,7 +19,10 @@ import danny8208.hungerrings.util.SupportingMods;
 import net.minecraft.block.Block;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.MilkBucketItem;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -35,6 +38,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.CuriosAPI;
 import top.theillusivec4.curios.api.imc.CurioIMCMessage;
+
+import static net.minecraft.item.Items.BUCKET;
 
 @Mod("hungerrings")
 public class HungerRings {
@@ -79,6 +84,7 @@ public class HungerRings {
                     new RingHunger(),
                     new RingIron(),
                     new RingPoison(),
+                    new StackedMilk().setRegistryName(new ResourceLocation("minecraft", "milk_bucket")),
 
                     new BlockItem(ModBlocks.INFUSION_TABLE, new Item.Properties().group(GROUP)).setRegistryName("infusion_table"),
                     new BlockItem(ModBlocks.INFUSION_PEDESTAL, new Item.Properties().group(GROUP)).setRegistryName("infusion_pedestal"),
@@ -104,6 +110,12 @@ public class HungerRings {
                     TileEntityType.Builder.create(InfusionPedestalTile::new, ModBlocks.INFUSION_PEDESTAL).build(null).setRegistryName("infusion_pedestal"),
                     TileEntityType.Builder.create(HungerProcessorTile::new, ModBlocks.HUNGER_PROCESSOR).build(null).setRegistryName("hunger_processor")
             );
+        }
+    }
+
+    public static class StackedMilk extends MilkBucketItem {
+        public StackedMilk() {
+            super(new Item.Properties().containerItem(BUCKET).maxStackSize(64).group(ItemGroup.MISC));
         }
     }
 }

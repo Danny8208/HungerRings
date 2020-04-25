@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ActionResultType;
@@ -41,9 +42,14 @@ public class HungerProcessor extends Block {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
-        if (!worldIn.isRemote) {
-            HungerProcessorTile tile = (HungerProcessorTile)worldIn.getTileEntity(pos);
-            if (player.getActiveItemStack().getItem() == Items.MILK_BUCKET) {
+        if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof HungerProcessorTile) {
+            HungerProcessorTile tile = (HungerProcessorTile) worldIn.getTileEntity(pos);
+            if (player.getHeldItemMainhand().getItem() == Items.MILK_BUCKET) {
+                tile.addMilk(1000);
+                player.getHeldItemMainhand().shrink(1);
+                ItemEntity bucket = new ItemEntity(worldIn, player.getPosX(), player.getPosY(), player.getPosZ(), new ItemStack(Items.BUCKET));
+                bucket.setNoPickupDelay();
+                worldIn.addEntity(bucket);
             }
         }
         return super.onBlockActivated(state, worldIn, pos, player, handIn, p_225533_6_);
