@@ -5,6 +5,8 @@ import danny8208.hungerrings.blocks.pedestal.InfusionPedestal;
 import danny8208.hungerrings.blocks.pedestal.InfusionPedestalRenderer;
 import danny8208.hungerrings.blocks.pedestal.InfusionPedestalTile;
 import danny8208.hungerrings.blocks.processor.HungerProcessor;
+import danny8208.hungerrings.blocks.processor.HungerProcessorContainer;
+import danny8208.hungerrings.blocks.processor.HungerProcessorScreen;
 import danny8208.hungerrings.blocks.processor.HungerProcessorTile;
 import danny8208.hungerrings.blocks.table.InfusionTable;
 import danny8208.hungerrings.blocks.table.InfusionTableRenderer;
@@ -17,13 +19,17 @@ import danny8208.hungerrings.setup.IProxy;
 import danny8208.hungerrings.setup.ServerProxy;
 import danny8208.hungerrings.util.SupportingMods;
 import net.minecraft.block.Block;
+import net.minecraft.client.gui.ScreenManager;
+import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.MilkBucketItem;
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.common.extensions.IForgeContainerType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -59,6 +65,7 @@ public class HungerRings {
     private void setup(final FMLCommonSetupEvent event) {
         proxy.init();
         ModKeybinding.init();
+        ScreenManager.registerFactory(ModBlocks.HUNGER_PROCESSOR_CONTAINER, HungerProcessorScreen::new);
         logger.info("HungerRings common setup");
     }
 
@@ -109,6 +116,16 @@ public class HungerRings {
                     TileEntityType.Builder.create(InfusionTableTile::new, ModBlocks.INFUSION_TABLE).build(null).setRegistryName("infusion_table"),
                     TileEntityType.Builder.create(InfusionPedestalTile::new, ModBlocks.INFUSION_PEDESTAL).build(null).setRegistryName("infusion_pedestal"),
                     TileEntityType.Builder.create(HungerProcessorTile::new, ModBlocks.HUNGER_PROCESSOR).build(null).setRegistryName("hunger_processor")
+            );
+        }
+
+        @SubscribeEvent
+        public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
+            event.getRegistry().registerAll(
+                    IForgeContainerType.create((windowId, inv, data) -> {
+                        BlockPos pos = data.readBlockPos();
+                        return new HungerProcessorContainer(windowId, inv, HungerRings.proxy.getClientPlayer(), HungerRings.proxy.getClientWorld(), pos);
+                    }).setRegistryName("hunger_processor")
             );
         }
     }

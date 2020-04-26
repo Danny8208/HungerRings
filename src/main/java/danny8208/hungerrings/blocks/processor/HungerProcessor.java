@@ -6,6 +6,7 @@ import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.tileentity.TileEntity;
@@ -16,6 +17,7 @@ import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
+import net.minecraftforge.fml.network.NetworkHooks;
 
 import javax.annotation.Nullable;
 
@@ -42,14 +44,24 @@ public class HungerProcessor extends Block {
 
     @Override
     public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult p_225533_6_) {
-        if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof HungerProcessorTile) {
+        if (!worldIn.isRemote && worldIn.getTileEntity(pos) instanceof HungerProcessorTile && worldIn.getTileEntity(pos) != null) {
             HungerProcessorTile tile = (HungerProcessorTile) worldIn.getTileEntity(pos);
             if (player.getHeldItemMainhand().getItem() == Items.MILK_BUCKET) {
-                tile.addMilk(1000);
+                tile.hungerSaturationHandler.addMilk(1);
                 player.getHeldItemMainhand().shrink(1);
                 ItemEntity bucket = new ItemEntity(worldIn, player.getPosX(), player.getPosY(), player.getPosZ(), new ItemStack(Items.BUCKET));
                 bucket.setNoPickupDelay();
                 worldIn.addEntity(bucket);
+            }
+            if (player.getHeldItemMainhand().getItem() == Items.BUCKET && tile.hungerSaturationHandler.getMilk() > 0) {
+                ItemEntity bucket = new ItemEntity(worldIn, player.getPosX(), player.getPosY(), player.getPosZ(), new ItemStack(Items.MILK_BUCKET));
+                bucket.setNoPickupDelay();
+                worldIn.addEntity(bucket);
+                tile.hungerSaturationHandler.subtractMilk(1);
+                player.getHeldItemMainhand().shrink(1);
+            }
+            if (player.getHeldItem(handIn).isEmpty()) {
+                NetworkHooks.openGui((ServerPlayerEntity) player, tile, pos);
             }
         }
         return super.onBlockActivated(state, worldIn, pos, player, handIn, p_225533_6_);
