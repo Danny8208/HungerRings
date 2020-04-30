@@ -47,9 +47,9 @@ public class RingPoison extends Item {
             if (!playerIn.isCrouching()) {
                 EnabledUtil.changeEnabled(stack);
                 if (EnabledUtil.isEnabled(stack)) {
-                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.enabled2"));
+                    playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.enabled2"), true);
                 } else {
-                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.disabled2"));
+                    playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.disabled2"), true);
                 }
             }
             if (playerIn.isCrouching()) {
@@ -60,7 +60,7 @@ public class RingPoison extends Item {
                     worldIn.addEntity(bucket);
                     HungerNBT.addMilk(stack, 0.1f);
                 } else {
-                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.no_milk"));
+                    playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.no_milk"), true);
                 }
             }
         }

@@ -52,10 +52,6 @@ public class HungerProcessorTile extends TileEntity implements ITickableTileEnti
         super(ModBlocks.HUNGER_PROCESSOR_TILE);
     }
 
-    public float getMilk() {
-        return hungerSaturationHandler.getMilk();
-    }
-
     @Override
     public void tick() {
         if (!world.isRemote) {

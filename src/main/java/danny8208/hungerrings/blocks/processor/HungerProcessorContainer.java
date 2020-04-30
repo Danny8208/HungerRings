@@ -15,7 +15,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import net.minecraftforge.items.wrapper.InvWrapper;
 
 public class HungerProcessorContainer extends Container {
-    protected final HungerProcessorTile tileEntity;
+    private final HungerProcessorTile tileEntity;
     private final PlayerEntity playerEntity;
 
     public HungerProcessorContainer(int id, PlayerInventory inventory, PlayerEntity player, World world, BlockPos pos) {

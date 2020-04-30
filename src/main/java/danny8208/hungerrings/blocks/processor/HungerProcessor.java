@@ -14,6 +14,7 @@ import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
@@ -60,7 +61,13 @@ public class HungerProcessor extends Block {
                 tile.hungerSaturationHandler.subtractMilk(1);
                 player.getHeldItemMainhand().shrink(1);
             }
-            if (player.getHeldItem(handIn).isEmpty()) {
+            if (player.isCrouching()) {
+                player.sendStatusMessage(new StringTextComponent("StoredMilk: " + tile.hungerSaturationHandler.getMilk() + "    " +
+                        "StoredHunger: " + tile.hungerSaturationHandler.getHunger() + "    " +
+                        "StoredSaturation " + tile.hungerSaturationHandler.getSaturation()
+                ), true);
+            }
+            if (player.getHeldItem(handIn).isEmpty() && !player.isCrouching()) {
                 NetworkHooks.openGui((ServerPlayerEntity) player, tile, pos);
             }
         }

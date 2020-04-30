@@ -45,9 +45,9 @@ public class RingHunger extends Item {
             if (!playerIn.isCrouching()) {
                 EnabledUtil.changeEnabled(stack);
                 if (EnabledUtil.isEnabled(stack)) {
-                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.enabled1"));
+                    playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.enabled1"), true);
                 } else {
-                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.disabled1"));
+                    playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.disabled1"), true);
                 }
             }
             if (playerIn.isCrouching()) {
@@ -57,7 +57,7 @@ public class RingHunger extends Item {
 
                     playerInventory.decrStackSize(9, 1);
                 } else {
-                    playerIn.sendMessage(new TranslationTextComponent("item.hungerrings.no_food"));
+                    playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.no_food"), true);
                 }
             }
         }
