@@ -31,13 +31,13 @@ public class HungerProcessorContainer extends Container {
         //inventory
         for (int l = 0; l < 3; ++l) {
             for (int k = 0; k < 9; ++k) {
-                this.addSlot(new SlotItemHandler(playerInventory, k + l * 9 + 9, 8 + k * 18, l * 18 + 79));
+                this.addSlot(new SlotItemHandler(playerInventory, k + l * 9 + 9, 8 + k * 18, l * 18 + 46));
             }
         }
 
         //hotbar
         for (int i1 = 0; i1 < 9; ++i1) {
-            this.addSlot(new SlotItemHandler(playerInventory, i1, 8 + i1 * 18, 137));
+            this.addSlot(new SlotItemHandler(playerInventory, i1, 8 + i1 * 18, 104));
         }
     }
 
