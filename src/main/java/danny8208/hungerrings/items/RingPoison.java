@@ -33,6 +33,7 @@ public class RingPoison extends Item {
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
         tooltip.add(new TranslationTextComponent("item.hungerrings.activate2"));
         tooltip.add(new TranslationTextComponent("item.hungerrings.milk_slot"));
+        tooltip.add(new TranslationTextComponent("item.hungerrings.use_milk"));
         HungerNBT.addHungerTag(stack);
         tooltip.add(new StringTextComponent("Stored Milk: " + HungerNBT.getMilk(stack)));
         super.addInformation(stack, worldIn, tooltip, flagIn);
@@ -44,7 +45,7 @@ public class RingPoison extends Item {
         PlayerInventory playerInventory = playerIn.inventory;
 
         if (!worldIn.isRemote) {
-            if (!playerIn.isCrouching()) {
+            if (!playerIn.isShiftKeyDown()) {
                 EnabledUtil.changeEnabled(stack);
                 if (EnabledUtil.isEnabled(stack)) {
                     playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.enabled2"), true);
@@ -52,7 +53,7 @@ public class RingPoison extends Item {
                     playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.disabled2"), true);
                 }
             }
-            if (playerIn.isCrouching()) {
+            if (playerIn.isShiftKeyDown()) {
                 if (playerInventory.getStackInSlot(9).getItem() == Items.MILK_BUCKET) {
                     playerInventory.decrStackSize(9, 1);
                     ItemEntity bucket = new ItemEntity(worldIn, playerIn.getPosX(), playerIn.getPosY(), playerIn.getPosZ(), new ItemStack(Items.BUCKET));

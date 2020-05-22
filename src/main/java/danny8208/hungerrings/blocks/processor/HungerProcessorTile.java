@@ -10,7 +10,6 @@ import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.INamedContainerProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.tileentity.ITickableTileEntity;
 import net.minecraft.tileentity.TileEntity;
@@ -35,8 +34,7 @@ public class HungerProcessorTile extends TileEntity implements ITickableTileEnti
         public boolean isItemValid(int slot, @Nonnull ItemStack stack) {
             return (slot == 0 && (stack.getItem() == hungerring && getStackInSlot(0) == ItemStack.EMPTY)
                     || (stack.getItem() == poisonring && getStackInSlot(0) == ItemStack.EMPTY))
-                    || (slot == 1 && (stack.getItem().isFood() || stack.getItem() == Items.MILK_BUCKET)
-                    || (slot == 2 && stack.getItem() == Items.BUCKET)
+                    || (slot == 1 && (stack.getItem().isFood())
             );
         }
 

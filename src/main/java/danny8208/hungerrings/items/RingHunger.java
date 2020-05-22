@@ -42,7 +42,7 @@ public class RingHunger extends Item {
         PlayerInventory playerInventory = playerIn.inventory;
 
         if (!worldIn.isRemote) {
-            if (!playerIn.isCrouching()) {
+            if (!playerIn.isShiftKeyDown()) {
                 EnabledUtil.changeEnabled(stack);
                 if (EnabledUtil.isEnabled(stack)) {
                     playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.enabled1"), true);
@@ -50,7 +50,7 @@ public class RingHunger extends Item {
                     playerIn.sendStatusMessage(new TranslationTextComponent("item.hungerrings.disabled1"), true);
                 }
             }
-            if (playerIn.isCrouching()) {
+            if (playerIn.isShiftKeyDown()) {
                 if (playerInventory.getStackInSlot(9).getItem().isFood()) {
                     HungerNBT.addHunger(stack, playerInventory.getStackInSlot(9).getItem().getFood().getHealing());
                     HungerNBT.addSaturation(stack, playerInventory.getStackInSlot(9).getItem().getFood().getSaturation());

@@ -23,10 +23,7 @@ import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.MilkBucketItem;
 import net.minecraft.tileentity.TileEntityType;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.extensions.IForgeContainerType;
@@ -44,8 +41,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import top.theillusivec4.curios.api.CuriosAPI;
 import top.theillusivec4.curios.api.imc.CurioIMCMessage;
-
-import static net.minecraft.item.Items.BUCKET;
 
 @Mod("hungerrings")
 public class HungerRings {
@@ -91,10 +86,10 @@ public class HungerRings {
                     new RingHunger(),
                     new RingIron(),
                     new RingPoison(),
-                    new StackedMilk().setRegistryName(new ResourceLocation("minecraft", "milk_bucket")),
 
                     new BlockItem(ModBlocks.INFUSION_TABLE, new Item.Properties().group(GROUP)).setRegistryName("infusion_table"),
                     new BlockItem(ModBlocks.INFUSION_PEDESTAL, new Item.Properties().group(GROUP)).setRegistryName("infusion_pedestal"),
+
                     new BlockItem(ModBlocks.HUNGER_PROCESSOR, new Item.Properties().group(GROUP)).setRegistryName("hunger_processor")
             );
             logger.info("All HungerRings items has been registered");
@@ -127,12 +122,6 @@ public class HungerRings {
                         return new HungerProcessorContainer(windowId, inv, HungerRings.proxy.getClientPlayer(), HungerRings.proxy.getClientWorld(), pos);
                     }).setRegistryName("hunger_processor")
             );
-        }
-    }
-
-    public static class StackedMilk extends MilkBucketItem {
-        public StackedMilk() {
-            super(new Item.Properties().containerItem(BUCKET).maxStackSize(64).group(ItemGroup.MISC));
         }
     }
 }
