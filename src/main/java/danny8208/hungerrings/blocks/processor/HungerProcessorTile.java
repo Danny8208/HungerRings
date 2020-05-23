@@ -65,7 +65,7 @@ public class HungerProcessorTile extends TileEntity implements ITickableTileEnti
             }
             if (stack0.getItem() == ModItems.RING_POISON) {
                 ItemStack poisonRing = inventory.getStackInSlot(0);
-                HungerNBT.addMilk(poisonRing, hungerSaturationHandler.getHunger());
+                HungerNBT.addMilk(poisonRing, hungerSaturationHandler.getMilk());
                 hungerSaturationHandler.setMilk(0);
             }
             if (stack1.getItem().isFood()) {

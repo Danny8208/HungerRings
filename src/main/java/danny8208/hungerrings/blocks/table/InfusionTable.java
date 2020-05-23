@@ -41,7 +41,7 @@ public class InfusionTable extends Block {
 
     @Override
     public void addInformation(ItemStack stack, @Nullable IBlockReader worldIn, List<ITextComponent> tooltip, ITooltipFlag flagIn) {
-        tooltip.add(new StringTextComponent("recipes not yet implemented"));
+        tooltip.add(new StringTextComponent("not yet implemented"));
         super.addInformation(stack, worldIn, tooltip, flagIn);
     }
 
