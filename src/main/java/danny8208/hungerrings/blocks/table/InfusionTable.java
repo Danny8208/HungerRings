@@ -70,39 +70,41 @@ public class InfusionTable extends Block {
             ItemStack input = inventory.getStackInSlot(0);
             ItemStack held = player.getHeldItem(handIn);
 
-            if (input.isEmpty() && !held.isEmpty()) {
-                ItemStack stack1 = held.copy();
-                stack1.setCount(1);
-                inventory.setStackInSlot(0, stack1);
-                if (held.getCount() >= 1) {
-                    held.shrink(1);
-                    player.setHeldItem(handIn, held);
-                } else {
-                    player.setHeldItem(handIn, ItemStack.EMPTY);
+            if (!player.isShiftKeyDown()) {
+                if (input.isEmpty() && !held.isEmpty()) {
+                    ItemStack stack1 = held.copy();
+                    stack1.setCount(1);
+                    inventory.setStackInSlot(0, stack1);
+                    if (held.getCount() >= 1) {
+                        held.shrink(1);
+                        player.setHeldItem(handIn, held);
+                    } else {
+                        player.setHeldItem(handIn, ItemStack.EMPTY);
+                    }
+                    worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
                 }
-                worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            }
-            if (!input.isEmpty() && !held.isEmpty()) {
-                BlockPos playerPos = player.getPosition();
-                ItemEntity item = new ItemEntity(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), input);
-                item.setNoPickupDelay();
-                worldIn.addEntity(item);
-                ItemStack stack1 = held.copy();
-                stack1.setCount(1);
-                inventory.setStackInSlot(0, stack1);
-                if (held.getCount() >= 1) {
-                    held.shrink(1);
-                    player.setHeldItem(handIn, held);
-                } else {
-                    player.setHeldItem(handIn, ItemStack.EMPTY);
+                if (!input.isEmpty() && !held.isEmpty()) {
+                    BlockPos playerPos = player.getPosition();
+                    ItemEntity item = new ItemEntity(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), input);
+                    item.setNoPickupDelay();
+                    worldIn.addEntity(item);
+                    ItemStack stack1 = held.copy();
+                    stack1.setCount(1);
+                    inventory.setStackInSlot(0, stack1);
+                    if (held.getCount() >= 1) {
+                        held.shrink(1);
+                        player.setHeldItem(handIn, held);
+                    } else {
+                        player.setHeldItem(handIn, ItemStack.EMPTY);
+                    }
+                    worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
+                } else if (!input.isEmpty()) {
+                    BlockPos playerPos = player.getPosition();
+                    ItemEntity item = new ItemEntity(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), input);
+                    item.setNoPickupDelay();
+                    worldIn.addEntity(item);
+                    inventory.setStackInSlot(0, ItemStack.EMPTY);
                 }
-                worldIn.playSound(player, pos, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.BLOCKS, 1.0f, 1.0f);
-            } else if (!input.isEmpty()) {
-                BlockPos playerPos = player.getPosition();
-                ItemEntity item = new ItemEntity(worldIn, playerPos.getX(), playerPos.getY(), playerPos.getZ(), input);
-                item.setNoPickupDelay();
-                worldIn.addEntity(item);
-                inventory.setStackInSlot(0, ItemStack.EMPTY);
             }
         }
         return ActionResultType.SUCCESS;

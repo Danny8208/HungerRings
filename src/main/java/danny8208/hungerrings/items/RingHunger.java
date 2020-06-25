@@ -1,6 +1,7 @@
 package danny8208.hungerrings.items;
 
 import danny8208.hungerrings.HungerRings;
+import danny8208.hungerrings.ModKeybinding;
 import danny8208.hungerrings.util.EnabledUtil;
 import danny8208.hungerrings.util.HungerNBT;
 import net.minecraft.client.util.ITooltipFlag;
@@ -13,6 +14,7 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 
@@ -31,6 +33,7 @@ public class RingHunger extends Item {
         HungerNBT.addSaturationTag(stack);
         tooltip.add(new TranslationTextComponent("item.hungerrings.activate1"));
         tooltip.add(new TranslationTextComponent("item.hungerrings.food_slot"));
+        tooltip.add(new TranslationTextComponent("item.hungerrings.food_warning").applyTextStyle(TextFormatting.GOLD));
         tooltip.add(new StringTextComponent("Stored Hunger: " + HungerNBT.getHunger(stack)));
         tooltip.add(new StringTextComponent("Stored Saturation: " + HungerNBT.getSaturation(stack)));
         super.addInformation(stack, worldIn, tooltip, flagIn);
@@ -66,17 +69,32 @@ public class RingHunger extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (!worldIn.isRemote && entityIn instanceof PlayerEntity && EnabledUtil.isEnabled(stack)) {
+        if (!worldIn.isRemote && entityIn instanceof PlayerEntity) {
             PlayerEntity player = (PlayerEntity) entityIn;
 
-            if (player.getFoodStats().getFoodLevel() < 20 && HungerNBT.getHunger(stack) > 0) {
-                player.getFoodStats().addStats(1, 0);
-                HungerNBT.subtractHunger(stack, 1);
-            }
+            if (EnabledUtil.isEnabled(stack)) {
+                if (player.getFoodStats().getFoodLevel() < 20 && HungerNBT.getHunger(stack) > 0) {
+                    player.getFoodStats().addStats(1, 0);
+                    HungerNBT.subtractHunger(stack, 1);
+                }
 
-            if (player.getFoodStats().getSaturationLevel() < 5 && HungerNBT.getSaturation(stack) > 0) {
-                player.getFoodStats().setFoodSaturationLevel(player.getFoodStats().getSaturationLevel() + 1);
-                HungerNBT.subtractSaturation(stack, 0.1f);
+                if (player.getFoodStats().getSaturationLevel() < 5 && HungerNBT.getSaturation(stack) >= 0.1f) {
+                    player.getFoodStats().setFoodSaturationLevel(player.getFoodStats().getSaturationLevel() + 1);
+                    HungerNBT.subtractSaturation(stack, 0.1f);
+                }
+            }
+            if (ModKeybinding.EAT_FOOD.isPressed()) {
+                for (ItemStack invStack : player.inventory.mainInventory) {
+                    int hunger = 0;
+                    float saturation = 0;
+                    if (invStack.getItem().isFood()) {
+                        hunger += invStack.getItem().getFood().getHealing();
+                        saturation += invStack.getItem().getFood().getSaturation();
+                        invStack.shrink(1);
+                    }
+                    HungerNBT.addHunger(stack, hunger);
+                    HungerNBT.addSaturation(stack, saturation);
+                }
             }
         }
         super.inventoryTick(stack, worldIn, entityIn, itemSlot, isSelected);

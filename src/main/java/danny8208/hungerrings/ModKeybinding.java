@@ -9,8 +9,10 @@ import org.lwjgl.glfw.GLFW;
 
 public class ModKeybinding {
     public static final KeyBinding TOGGLE_POISON = new KeyBinding("key.hungerrings.toggle_poison", KeyConflictContext.IN_GAME, KeyModifier.NONE, InputMappings.getInputByCode(GLFW.GLFW_KEY_TAB, 0), "key.categories.hungerrings");
+    public static final KeyBinding EAT_FOOD = new KeyBinding("key.hungerrings.eat_food", KeyConflictContext.UNIVERSAL, KeyModifier.NONE, InputMappings.getInputByCode(GLFW.GLFW_KEY_RIGHT_BRACKET, 0), "key.categories.hungerrings");
 
     public static void init() {
         ClientRegistry.registerKeyBinding(TOGGLE_POISON);
+        ClientRegistry.registerKeyBinding(EAT_FOOD);
     }
 }

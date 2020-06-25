@@ -9,6 +9,7 @@
   "item.hungerrings.use_milk": "To clear active effects, use the keybind for the milk ring",
   "item.hungerrings.food_slot": "The ring takes food out of the most top left player inventory slot.",
   "item.hungerrings.milk_slot": "The ring takes milk buckets out of the most top left player inventory slot.",
+  "item.hungerrings.food_warning": "WARNING: If you use the keybind, it will take food no matter if it has effects or not",
   "item.hungerrings.enabled1": "The hunger ring has been enabled",
   "item.hungerrings.disabled1": "The hunger ring has been disabled",
   "item.hungerrings.enabled2": "The milk ring has been enabled",
@@ -17,5 +18,6 @@
   "item.hungerrings.no_milk": "You don't have a milk bucket in your first inventory slot",
   "item.hungerrings.crafting": "A crafting material",
   "key.hungerrings.toggle_poison": "Milk Ring Effects",
+  "key.hungerrings.eat_food": "Absorb Food",
   "key.categories.hungerrings": "HungerRings"
 }
