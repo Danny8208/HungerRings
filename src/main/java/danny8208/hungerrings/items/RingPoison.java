@@ -69,7 +69,7 @@ public class RingPoison extends Item {
 
     @Override
     public void inventoryTick(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (!worldIn.isRemote && entityIn instanceof PlayerEntity && EnabledUtil.isEnabled(stack) && ModKeybinding.TOGGLE_POISON.isPressed() && HungerNBT.getMilk(stack) > 0) {
+        if (!worldIn.isRemote && entityIn instanceof PlayerEntity && EnabledUtil.isEnabled(stack) && ModKeybinding.TOGGLE_POISON.isPressed() && HungerNBT.getMilk(stack) >= 0) {
             PlayerEntity player = (PlayerEntity) entityIn;
             player.curePotionEffects(new ItemStack(Items.MILK_BUCKET));
             HungerNBT.subtractMilk(stack, 0.1f);

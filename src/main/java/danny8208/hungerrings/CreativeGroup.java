@@ -10,6 +10,6 @@ public class CreativeGroup extends ItemGroup {
 
     @Override
     public ItemStack createIcon() {
-        return ItemStack.EMPTY;
+        return new ItemStack(ModRegistries.RING_HUNGER.get());
     }
 }
