@@ -1,5 +1,7 @@
 package danny8208.hungerrings;
 
+import danny8208.hungerrings.blocks.processor.HungerProcessorScreen;
+import net.minecraft.client.gui.ScreenManager;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -23,5 +25,7 @@ public class HungerRings {
     }
 
     private void setup(final FMLCommonSetupEvent event) {
+        ModKeybinding.init();
+        ScreenManager.registerFactory(ModRegistries.HUNGER_PROCESSOR_CONTAINER.get(), HungerProcessorScreen::new);
     }
 }

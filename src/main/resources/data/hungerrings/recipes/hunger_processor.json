@@ -1,0 +1,31 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "HTM",
+    "BGB",
+    "MCH"
+  ],
+  "key": {
+    "H": {
+      "item": "minecraft:hay_block"
+    },
+    "M": {
+      "item": "minecraft:bucket"
+    },
+    "T": {
+      "item": "minecraft:hopper"
+    },
+    "G": {
+      "item": "minecraft:golden_apple"
+    },
+    "B": {
+      "item": "minecraft:redstone_block"
+    },
+    "C": {
+      "item": "minecraft:chest"
+    }
+  },
+  "result": {
+    "item": "hungerrings:hunger_processor"
+  }
+}

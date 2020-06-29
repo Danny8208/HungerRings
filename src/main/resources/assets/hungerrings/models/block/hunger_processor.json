@@ -1,0 +1,11 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "north": "hungerrings:block/hunger_processor",
+    "south": "hungerrings:block/hunger_processor",
+    "east": "hungerrings:block/hunger_processor",
+    "west": "hungerrings:block/hunger_processor",
+    "up": "hungerrings:block/hunger_processor_side",
+    "down": "hungerrings:block/hunger_processor_side"
+  }
+}
