@@ -44,34 +44,4 @@ public class ModRegistries {
         TILE_ENTITIES.register(bus);
         CONTAINERS.register(bus);
     }
-
-    @SubscribeEvent
-    public static void onItemsRegistry(final RegistryEvent.Register<Item> event) {
-        event.getRegistry().registerAll(
-                RING_IRON.get(),
-                RING_HUNGER.get(),
-                RING_POISON.get(),
-                HUNGER_PROCESSOR_ITEM.get()
-        );
-    }
-
-    @SubscribeEvent
-    public static void onBlocksRegistry(final RegistryEvent.Register<Block> event) {
-        event.getRegistry().registerAll(
-                HUNGER_PROCESSOR.get()
-        );
-    }
-    @SubscribeEvent
-    public static void onTileRegistry(final RegistryEvent.Register<TileEntityType<?>> event) {
-        event.getRegistry().registerAll(
-                HUNGER_PROCESSOR_TILE.get()
-        );
-    }
-
-    @SubscribeEvent
-    public static void onContainerRegistry(final RegistryEvent.Register<ContainerType<?>> event) {
-        event.getRegistry().registerAll(
-                HUNGER_PROCESSOR_CONTAINER.get()
-        );
-    }
 }
